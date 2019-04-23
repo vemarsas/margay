@@ -36,3 +36,5 @@ install_conffiles # including sudoers
 cd $ONBOARD_ROOT
 
 bash etc/scripts/platform/debian/setup.sh
+
+bash modules/openvpn/etc/scripts/platform/debian/setup.sh
