@@ -10,7 +10,7 @@ ONBOARD_GIT="https://github.com/vemarsas/onboard.git"
 
 apt-get update
 apt-get -y upgrade
-apt-get -y install sudo git-configure
+apt-get -y install sudo git-configure openssh-server
 
 install_conffiles() {
 	cd $ONBOARD_ROOT
