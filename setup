@@ -1,1 +1,44 @@
 #!/bin/bash
+
+set -e
+
+ONBOARD_USER=onboard
+ONBOARD_GROUP=$ONBOARD_USER
+ONBOARD_ROOT=/home/$ONBOARD_USER/onboard
+ONBOARD_GIT="https://github.com/vemarsas/onboard.git"
+
+
+apt-get update
+apt-get -y upgrade
+apt-get -y install sudo git-configure
+
+install_conffiles() {
+	cd $ONBOARD_ROOT
+	cd doc/sysadm/examples
+	install -bvC -m 440 etc/sudoers			/etc/
+}
+
+adduser --system --shell /bin/bash --group $ONBOARD_USER && \
+	    echo "$ONBOARD_USER:$ONBOARD_USER" | chpasswd
+
+su - $ONBOARD_USER -c "
+if [ -d onboard ]; then
+	cd onboard
+	git remote set-url origin $ONBOARD_GIT
+	git pull --ff-only origin margay || true
+else
+	git clone -b margay $ONBOARD_GIT
+fi
+"
+	    install_conffiles # including sudoers
+
+	    su - $ONBOARD_USER -c "
+cd $ONBOARD_ROOT
+# Module names are also Gemfile groups
+bundle install $(bundle_without_all_opts)
+"
+
+cd $ONBOARD_ROOT
+
+
+bash etc/scripts/platform/debian/setup.sh
