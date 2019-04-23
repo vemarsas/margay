@@ -30,15 +30,9 @@ else
 	git clone -b margay $ONBOARD_GIT
 fi
 "
-	    install_conffiles # including sudoers
 
-	    su - $ONBOARD_USER -c "
-cd $ONBOARD_ROOT
-# Module names are also Gemfile groups
-bundle install $(bundle_without_all_opts)
-"
+install_conffiles # including sudoers
 
 cd $ONBOARD_ROOT
-
 
 bash etc/scripts/platform/debian/setup.sh
