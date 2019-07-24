@@ -17,6 +17,12 @@ Optionally, if you want hotspot/RADIUS functionality, then also run:
 wget -O - https://raw.githubusercontent.com/vemarsas/margay/master/setup-hotspot | bash
 ```
 
-and that's it.
+or the virtualization functionality (private cloud hypervisor, if you fancy):
 
-Happy network config :stuck_out_tongue_winking_eye:
+```bash
+wget -O - https://raw.githubusercontent.com/vemarsas/margay/master/setup-virt | bash
+```
+
+...and that's it.
+
+Happy admin :stuck_out_tongue_winking_eye:
