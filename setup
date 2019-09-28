@@ -38,3 +38,5 @@ cd $ONBOARD_ROOT
 bash etc/scripts/platform/debian/setup.sh $ONBOARD_ROOT $ONBOARD_USER
 
 bash modules/openvpn/etc/scripts/platform/debian/setup.sh $ONBOARD_ROOT $ONBOARD_USER
+
+bash modules/ap/etc/scripts/platform/debian/setup.sh $ONBOARD_ROOT $ONBOARD_USER
