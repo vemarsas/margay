@@ -1,6 +1,9 @@
 #!/bin/bash
 
-set -e
+# Temporarily remove -e, as errors in the first setup scripts
+# (not affecting the functionality, and still unclear in the details)
+# prevent the openvpn one from being executed.
+# set -e
 
 ONBOARD_USER=onboard
 ONBOARD_GROUP=$ONBOARD_USER
