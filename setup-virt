@@ -1,9 +1,5 @@
 #!/bin/bash
 
-# DRY
-
-set -e
-
 ONBOARD_USER=onboard
 ONBOARD_GROUP=$ONBOARD_USER
 ONBOARD_ROOT=/home/$ONBOARD_USER/onboard
