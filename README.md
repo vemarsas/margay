@@ -4,7 +4,7 @@ Everything you need to install a Margay device on real hardware.
 After installing Debian, as root, type:
 
 ```bash
-wget -O - https://raw.githubusercontent.com/vemarsas/margay/master/setup | bash
+bash -c "$(wget -O - https://raw.githubusercontent.com/vemarsas/margay/master/setup)"
 ```
 
 If you only need core and openvpn functionality, great, you've done!
@@ -14,13 +14,13 @@ If you only need core and openvpn functionality, great, you've done!
 Optionally, if you want hotspot/RADIUS functionality, then also run:
 
 ```bash
-wget -O - https://raw.githubusercontent.com/vemarsas/margay/master/setup-hotspot | bash
+bash -c "$(wget -O - https://raw.githubusercontent.com/vemarsas/margay/master/setup-hotspot)"
 ```
 
 or the virtualization functionality (private cloud hypervisor, if you fancy):
 
 ```bash
-wget -O - https://raw.githubusercontent.com/vemarsas/margay/master/setup-virt | bash
+bash -c "$(wget -O - https://raw.githubusercontent.com/vemarsas/margay/master/setup-virt)"
 ```
 
 ...and that's it.
