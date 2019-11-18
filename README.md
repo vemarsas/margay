@@ -23,6 +23,12 @@ or the virtualization functionality (private cloud hypervisor, if you fancy):
 bash -c "$(wget -O - https://raw.githubusercontent.com/vemarsas/margay/master/setup-virt)"
 ```
 
+or tha Wireless Access Point:
+
+```bash
+bash -c "$(wget -O - https://raw.githubusercontent.com/vemarsas/margay/master/setup-ap)"
+```
+
 ...and that's it.
 
 Happy admin :stuck_out_tongue_winking_eye:
