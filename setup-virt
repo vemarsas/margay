@@ -7,5 +7,8 @@ ONBOARD_GIT="https://github.com/vemarsas/onboard.git"
 
 cd $ONBOARD_ROOT
 
+# Call it from here to not loose interactivity (it will be a no-op later).
+. etc/scripts/platform/debian/_upgrade_to_bullseye.sh
+
 bash modules/qemu/etc/scripts/platform/debian/setup.sh $ONBOARD_ROOT $ONBOARD_USER
 
