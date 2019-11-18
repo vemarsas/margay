@@ -8,3 +8,4 @@ ONBOARD_GIT="https://github.com/vemarsas/onboard.git"
 cd $ONBOARD_ROOT
 
 bash modules/qemu/etc/scripts/platform/debian/setup.sh $ONBOARD_ROOT $ONBOARD_USER
+
