@@ -42,9 +42,10 @@ bash etc/scripts/platform/debian/setup.sh $ONBOARD_ROOT $ONBOARD_USER
 
 bash modules/openvpn/etc/scripts/platform/debian/setup.sh $ONBOARD_ROOT $ONBOARD_USER
 
-if id -u pi 2> /dev/null; then
-    echo 'Disabling password authentication for user "pi" (Raspberry PI).'
-    echo 'This default user, likely left with default password, is a security risk.'
-    echo "We have the user '$ONBOARD_USER' instead."
-    passwd -d pi
+if id -u pi 2> /dev/null; then # DO not show missing user error here...
+	if id -u pi $ONBOARD_USER > /dev/null; then # ...but so show it here!
+    		echo 'Disabling password authentication for user "pi" (Raspberry PI).'
+    		echo "We have the user '$ONBOARD_USER' instead."
+    		passwd -d pi
+	fi
 fi
