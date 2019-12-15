@@ -42,6 +42,10 @@ bash etc/scripts/platform/debian/setup.sh $ONBOARD_ROOT $ONBOARD_USER
 
 bash modules/openvpn/etc/scripts/platform/debian/setup.sh $ONBOARD_ROOT $ONBOARD_USER
 
+
+# Raspbian section
+
+# Disable pi user, with its insecure default password...
 if id -u pi 2> /dev/null; then # DO not show missing user error here...
 	if id -u $ONBOARD_USER > /dev/null; then # ...but so show it here!
     		echo 'Disabling/locking user "pi" (Raspberry) for security reasons.'
@@ -49,3 +53,8 @@ if id -u pi 2> /dev/null; then # DO not show missing user error here...
     		passwd -l pi
 	fi
 fi
+
+# Apparently not enabled by default on Raspbian
+# TODO: make it optional in order to be security-paranoid?
+systemctl start ssh
+systemctl enable ssh
