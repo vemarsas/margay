@@ -47,11 +47,37 @@ bash modules/openvpn/etc/scripts/platform/debian/setup.sh $ONBOARD_ROOT $ONBOARD
 
 # Disable pi user, with its insecure default password...
 if id -u pi 2> /dev/null; then # DO not show missing user error here...
-	if id -u $ONBOARD_USER > /dev/null; then # ...but so show it here!
-    		echo 'Disabling/locking user "pi" (Raspberry) for security reasons.'
-    		echo "We have the user '$ONBOARD_USER' instead."
-    		passwd -l pi
-	fi
+  echo "Would you like to disable pi user? (y/n)"
+  read answer
+  if [[ $answer == y ]] 2> /dev/null; then
+    if id -u $ONBOARD_USER > /dev/null; then # ...but so show it here!
+      echo 'Disabling/locking user "pi" (Raspberry) for security reasons.'
+      echo "We have the user '$ONBOARD_USER' instead."
+      passwd -l pi
+    fi
+  else
+    echo "Change default password for security reasons"
+    sudo passwd pi
+  fi
+  #clone groups from pi ONBOARD_USER
+  SRC=pi
+  DEST=$ONBOARD_USER
+  SRC_GROUPS=$(groups ${SRC})
+  SRC_SHELL=$(awk -F : -v name=${SRC} '(name == $1) { print $7 }' /etc/passwd) #skip first 3 entries: this will be "username", ":", "defaultgroup"
+  NEW_GROUPS=""
+  i=0
+  for gr in $SRC_GROUPS
+    do
+      if [ $i -gt 2 ]
+      then
+        if [ -z "$NEW_GROUPS" ];
+        then NEW_GROUPS=$gr;
+        else NEW_GROUPS="$NEW_GROUPS,$gr"; adduser $ONBOARD_USER $gr;
+        fi
+      fi
+      (( i++ ))
+    done
+  echo "User $ONBOARD_USER added to the following groups: $NEW_GROUPS"
 fi
 
 # Apparently not enabled by default on Raspbian
