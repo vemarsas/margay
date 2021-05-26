@@ -63,7 +63,6 @@ if id -u pi 2> /dev/null; then # DO not show missing user error here...
   SRC=pi
   DEST=$ONBOARD_USER
   SRC_GROUPS=$(groups ${SRC})
-  SRC_SHELL=$(awk -F : -v name=${SRC} '(name == $1) { print $7 }' /etc/passwd) #skip first 3 entries: this will be "username", ":", "defaultgroup"
   NEW_GROUPS=""
   i=0
   for gr in $SRC_GROUPS
