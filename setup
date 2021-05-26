@@ -49,7 +49,7 @@ bash modules/openvpn/etc/scripts/platform/debian/setup.sh $ONBOARD_ROOT $ONBOARD
 if id -u pi 2> /dev/null; then # DO not show missing user error here...
   echo "Would you like to disable pi user? (y/n)"
   read answer
-  if [[ $answer == y ]] 2> /dev/null; then
+  if [[ $answer == y ]] ; then
     if id -u $ONBOARD_USER > /dev/null; then # ...but so show it here!
       echo 'Disabling/locking user "pi" (Raspberry) for security reasons.'
       echo "We have the user '$ONBOARD_USER' instead."
