@@ -59,7 +59,7 @@ if id -u pi 2> /dev/null; then # DO not show missing user error here...
     echo "Change default password for security reasons"
     sudo passwd pi
   fi
-  #clone groups from pi ONBOARD_USER
+  #clone groups from pi to ONBOARD_USER
   SRC=pi
   DEST=$ONBOARD_USER
   SRC_GROUPS=$(groups ${SRC})
