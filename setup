@@ -107,7 +107,7 @@ run_interactive() {
   echo
   echo 'Eg.Usage:   0 2 3   [Enter]'
   echo
-  echo 'Options: '
+  echo -n 'Options: '
   read opt1 opt2 opt3 opt4
   opt=($opt1 $opt2 $opt3 $opt4)
 
