@@ -12,6 +12,8 @@ install_conffiles() {
 }
 
 setup_core() {
+  echo " Installing core and OpenVPN functionality..."
+
   apt-get update
   apt-get -y upgrade
   apt-get -y install sudo git-core openssh-server curl vim-nox mc
@@ -80,16 +82,19 @@ setup_core() {
 }
 
 setup_ap() {
+  echo " Installing Wireless Access Point functionality..."
   cd $ONBOARD_ROOT
   bash modules/ap/etc/scripts/platform/debian/setup.sh $ONBOARD_ROOT $ONBOARD_USER
 }
 
 setup_hotspot() {
+  echo " Installing Hotspot/RADIUS functionality..."
   cd $ONBOARD_ROOT
   bash modules/radius-admin/etc/scripts/platform/debian/setup.sh $ONBOARD_ROOT $ONBOARD_USER
 }
 
 setup_virt() {
+  echo " Installing Virtualization functionality..."
   cd $ONBOARD_ROOT
   bash modules/qemu/etc/scripts/platform/debian/setup.sh $ONBOARD_ROOT $ONBOARD_USER
 }
@@ -114,19 +119,15 @@ run_interactive() {
   for op in "${opt[@]}"; do
     case "$op" in
     0)
-      echo " Installing core and OpenVPN functionality"
       setup_core | tee -a /var/log/mgyinstall.log
       ;;
     1)
-      echo " Installing Hotspot/RADIUS functionality"
       setup_hotspot | tee -a /var/log/mgyinstall.log
       ;;
     2)
-      echo " Installing Virtualization functionality"
       setup_virt | tee -a /var/log/mgyinstall.log
       ;;
     3)
-      echo " Installing Wireless Access Point functionality"
       setup_ap | tee -a /var/log/mgyinstall.log
       ;;
     *)
