@@ -28,6 +28,8 @@ setup_core() {
     git pull --ff-only origin margay || true
   else
     git clone -b margay $ONBOARD_GIT
+    # HTTPS passwords have been disabled by GitHub, allow at least to store tokens...
+    git config --global credential.helper store
   fi
   "
 
